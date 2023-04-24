@@ -29,4 +29,17 @@ class CacheServiceTest {
 
 		// configuration에 지정한 시간이 지나면 redis에서 삭제된 것을 확인할 수 있음
 	}
+
+	@Test
+	void cacheEvict() {
+		// init data
+		itemRepository.save(new Item("상품 A", 1_000L));
+		Long id = 1L;
+
+		// 아래 코드 실행 후 Redis에서 조회하면 해당 값이 저장되어 있음
+		cacheService.findItemById(id);
+
+		// 아래 코드 실행 후 Redis에서 조회하면 해당 값이 삭제되어 있음
+		cacheService.deleteItemById(id);
+	}
 }

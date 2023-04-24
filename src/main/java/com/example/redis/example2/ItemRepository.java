@@ -19,4 +19,8 @@ public class ItemRepository {
 	public Item getById(Long id) {
 		return items.get(id);
 	}
+
+	public void deleteById(Long id) {
+		items.remove(id);
+	}
 }
